@@ -1,6 +1,7 @@
 class Board(object):
     """A game board"""
 
+    # These both store the same objects, nested and flat.
     spaces = []
     rows = [] # [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
@@ -34,14 +35,24 @@ class Board(object):
         return available_spaces
 
 
-    def is_won(self):
+    def who_won(self):
         """Checks whether a player has won"""
-        pass
+        # check for winning row
+        for row in self.rows:
+            if (row[0].player != 0) and (row[0].player == row[1].player == row[2].player):
+                return row[0].player
+
+        # check for winnong column
+
+        # check for diagonals
+        
+        return None
 
 
     def winning_move(self, player):
         """Checks whether there is a winning move available for a given player"""
         pass
+
 
     def print_board(self):
         """Prints board to screen"""
