@@ -7,11 +7,9 @@ class Board(object):
     def __init__(self):
         """Makes spaces for new boards"""
 
-        i = 3
-        j = 3
-        for num1 in range(i):
-            for num2 in range(j):
-                # print num1, num2
+        for num1 in range(-1, 2):
+            for num2 in range(-1, 2):
+                print num1, num2
                 space = Space(num1, num2)
                 self.spaces.append(space)
 
@@ -29,7 +27,9 @@ class Board(object):
         """Checks whether a player has won"""
         pass
 
-
+    def winning_move(self, player):
+        """Checks whether there is a winning move available for a given player"""
+        pass
 
 
 class Space(object):
