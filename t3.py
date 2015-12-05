@@ -52,7 +52,18 @@ class Board(object):
                 return self.rows[0][i].player
 
         # check for diagonals
+        if (self.rows[0][0].player != 0) and (self.rows[0][0].player ==
+                                                self.rows[1][1].player == 
+                                                self.rows[2][2].player):
+            return self.rows[0][0].player
 
+        elif (self.rows[2][0].player != 0) and (self.rows[2][0].player ==
+                                                self.rows[1][1].player == 
+                                                self.rows[0][2].player):
+            return self.rows[2][0].player
+
+        # leave as none, not 0, so that later I can check for if who_won changes to an int, move into that square
+        # that would both block a potentially winning opponent and win the game for the computer
         return None
 
 
@@ -93,11 +104,12 @@ class Space(object):
 if __name__ == "__main__":
 
     board = Board()
-    board.spaces[0].player = 1
+    # board.spaces[0].player = 1
+    # board.spaces[4].player = 2
+    # board.spaces[1].player = 1
+    board.spaces[0].player = 2
     board.spaces[4].player = 2
-    board.spaces[1].player = 1
-    board.spaces[5].player = 2
-    board.spaces[2].player = 2
-    board.spaces[8].player = 2
+    board.spaces[8].player = 1
     board.print_board()
+    print "Who won: ", board.who_won()
 
