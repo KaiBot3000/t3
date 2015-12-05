@@ -39,25 +39,25 @@ class Board(object):
         """Checks whether a player has won"""
         # check for winning row
         for row in self.rows:
-            if (row[0].player != 0) and (row[0].player == 
+            if (row[0].player == 
                                             row[1].player == 
                                             row[2].player):
                 return row[0].player
 
         # check for winning column
         for i in range(3):
-            if (self.rows[0][i].player != 0) and (self.rows[0][i].player == 
+            if (self.rows[0][i].player == 
                                                     self.rows[1][i].player == 
                                                     self.rows[2][i].player):
                 return self.rows[0][i].player
 
         # check for diagonals
-        if (self.rows[0][0].player != 0) and (self.rows[0][0].player ==
+        if (self.rows[0][0].player ==
                                                 self.rows[1][1].player == 
                                                 self.rows[2][2].player):
             return self.rows[0][0].player
 
-        elif (self.rows[2][0].player != 0) and (self.rows[2][0].player ==
+        elif (self.rows[2][0].player ==
                                                 self.rows[1][1].player == 
                                                 self.rows[0][2].player):
             return self.rows[2][0].player
@@ -84,15 +84,13 @@ class Board(object):
 class Space(object):
     """A space on the game board"""
 
-    player = 0
-
-
     def __init__(self, x, y, location):
         """Sets coordinates of new space"""
 
         self.x = x
         self.y = y
         self.location = location
+        self.player = location
 
 
     def __repr__(self):
@@ -100,16 +98,32 @@ class Space(object):
 
         return "%s: (%s, %s)" % (self.location, self.x, self.y)
 
+# def print_diagram():
+#     """Prints board diagram to screen"""
+
+#     for i in range(len(self.rows)):
+#         print self.rows[i][0].player, "||", self.rows[i][1].player, "||", self.rows[i][2].player
+#         if i < 2:
+#             print "==========="
+
+#     print " 0 || 1 || 2"
+#     print "==========="
+
 
 if __name__ == "__main__":
 
     board = Board()
-    # board.spaces[0].player = 1
-    # board.spaces[4].player = 2
-    # board.spaces[1].player = 1
-    board.spaces[0].player = 2
-    board.spaces[4].player = 2
-    board.spaces[8].player = 1
+
+    board.spaces[0].player = 'x'
+    board.spaces[1].player = 'x'
+    board.spaces[2].player = 'x'
+    # board.spaces[3].player = 
+    # board.spaces[4].player = 
+    # board.spaces[5].player = 
+    # board.spaces[6].player = 
+    # board.spaces[7].player = 
+    # board.spaces[8].player = 
+
     board.print_board()
     print "Who won: ", board.who_won()
 
