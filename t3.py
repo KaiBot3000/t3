@@ -1,8 +1,8 @@
 class Board(object):
     """A game board"""
 
-    # track spaces individually, or keep in list?
     spaces = []
+    rows = [] # [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 
     def __init__(self):
@@ -11,11 +11,16 @@ class Board(object):
         location = 0
 
         for num1 in range(-1, 2):
+            column = []
+
             for num2 in range(-1, 2):
-                print location, " at: ", num1, num2
-                space = Space(num1, num2, location)
+                # print location, " at: ", num2, num1
+                space = Space(num2, num1, location)
                 self.spaces.append(space)
+                column.append(space)
                 location += 1
+
+            self.rows.append(column)
 
 
     def available_spaces(self):
@@ -41,11 +46,10 @@ class Board(object):
     def print_board(self):
         """Prints board to screen"""
 
-        print self.spaces[2].player, "||", self.spaces[5].player, "||", self.spaces[8].player 
-        print "==========="    
-        print self.spaces[1].player, "||", self.spaces[4].player, "||", self.spaces[7].player
-        print "==========="
-        print self.spaces[0].player, "||", self.spaces[3].player, "||", self.spaces[6].player        
+        for i in range(len(self.rows)):
+            print self.rows[i][0].player, "||", self.rows[i][1].player, "||", self.rows[i][2].player
+            if i < 2:
+                print "==========="
 
 
 class Space(object):
@@ -65,8 +69,7 @@ class Space(object):
     def __repr__(self):
         """Shows coordinates when object printed"""
 
-        # return "(%s, %s)" % (self.x, self.y) 
-        return "%s" % self.location
+        return "%s: (%s, %s)" % (self.location, self.x, self.y)
 
 
 if __name__ == "__main__":
@@ -77,4 +80,5 @@ if __name__ == "__main__":
     board.spaces[1].player = 1
     board.spaces[5].player = 2
     board.spaces[2].player = 1
+    board.print_board()
 
