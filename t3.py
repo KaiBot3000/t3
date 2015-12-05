@@ -4,6 +4,7 @@ class Board(object):
     # track spaces individually, or keep in list?
     spaces = []
 
+
     def __init__(self):
         """Makes spaces for new boards"""
 
@@ -16,29 +17,42 @@ class Board(object):
                 self.spaces.append(space)
                 location += 1
 
+
     def available_spaces(self):
         """Returns list of open spaces"""
 
         available_spaces = []
         for space in self.spaces:
-            if space.player == None:
+            if space.player == 0:
                 available_spaces.append(space)
 
         return available_spaces
+
 
     def is_won(self):
         """Checks whether a player has won"""
         pass
 
+
     def winning_move(self, player):
         """Checks whether there is a winning move available for a given player"""
         pass
+
+    def print_board(self):
+        """Prints board to screen"""
+
+        print self.spaces[2].player, "||", self.spaces[5].player, "||", self.spaces[8].player 
+        print "==========="    
+        print self.spaces[1].player, "||", self.spaces[4].player, "||", self.spaces[7].player
+        print "==========="
+        print self.spaces[0].player, "||", self.spaces[3].player, "||", self.spaces[6].player        
 
 
 class Space(object):
     """A space on the game board"""
 
-    player = None
+    player = 0
+
 
     def __init__(self, x, y, location):
         """Sets coordinates of new space"""
@@ -47,13 +61,12 @@ class Space(object):
         self.y = y
         self.location = location
 
+
     def __repr__(self):
         """Shows coordinates when object printed"""
 
         # return "(%s, %s)" % (self.x, self.y) 
         return "%s" % self.location
-
-
 
 
 if __name__ == "__main__":
