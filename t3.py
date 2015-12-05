@@ -7,11 +7,14 @@ class Board(object):
     def __init__(self):
         """Makes spaces for new boards"""
 
+        location = 0
+
         for num1 in range(-1, 2):
             for num2 in range(-1, 2):
-                print num1, num2
-                space = Space(num1, num2)
+                print location, " at: ", num1, num2
+                space = Space(num1, num2, location)
                 self.spaces.append(space)
+                location += 1
 
     def available_spaces(self):
         """Returns list of open spaces"""
@@ -37,16 +40,18 @@ class Space(object):
 
     player = None
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, location):
         """Sets coordinates of new space"""
 
         self.x = x
         self.y = y
+        self.location = location
 
     def __repr__(self):
         """Shows coordinates when object printed"""
 
-        return "(%s, %s)" % (self.x, self.y) 
+        # return "(%s, %s)" % (self.x, self.y) 
+        return "%s" % self.location
 
 
 
@@ -54,4 +59,9 @@ class Space(object):
 if __name__ == "__main__":
 
     board = Board()
+    board.spaces[0].player = 1
+    board.spaces[4].player = 2
+    board.spaces[1].player = 1
+    board.spaces[5].player = 2
+    board.spaces[2].player = 1
 
