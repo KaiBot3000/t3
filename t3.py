@@ -39,13 +39,20 @@ class Board(object):
         """Checks whether a player has won"""
         # check for winning row
         for row in self.rows:
-            if (row[0].player != 0) and (row[0].player == row[1].player == row[2].player):
+            if (row[0].player != 0) and (row[0].player == 
+                                            row[1].player == 
+                                            row[2].player):
                 return row[0].player
 
-        # check for winnong column
+        # check for winning column
+        for i in range(3):
+            if (self.rows[0][i].player != 0) and (self.rows[0][i].player == 
+                                                    self.rows[1][i].player == 
+                                                    self.rows[2][i].player):
+                return self.rows[0][i].player
 
         # check for diagonals
-        
+
         return None
 
 
@@ -90,6 +97,7 @@ if __name__ == "__main__":
     board.spaces[4].player = 2
     board.spaces[1].player = 1
     board.spaces[5].player = 2
-    board.spaces[2].player = 1
+    board.spaces[2].player = 2
+    board.spaces[8].player = 2
     board.print_board()
 
